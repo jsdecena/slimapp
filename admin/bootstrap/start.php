@@ -52,3 +52,6 @@ $app->view->parserExtensions = array(new \Slim\Views\TwigExtension());
 require '../routes/api/users.php';
 require '../routes/api/posts.php';
 require '../routes/api/pages.php';
+
+// Run app
+$app->run();

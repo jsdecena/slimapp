@@ -9,7 +9,7 @@
 - Set your db credentials in /admin/phinx.yml
 - Run `php vendor/bin/phinx migrate`
 - Populate your database (Todo: Seeder)
-- Run `php -s 0.0.0.0:8001` and go to [localhost](http://localhost:8001)
+- Go to /admin/public and run `php -S 0.0.0.0:8001` and go to [localhost](http://localhost:8001)
 
 ####Set up the front end - Angular
 
