@@ -20,11 +20,13 @@ $app->get('/api/v1/pages', function () use ($app) {
 });
 
 //GET THE PARTICULAR USER
-$app->get('/api/v1/pages/:id', function ($id) use ($app) {
+$app->get('/api/v1/pages/:slug', function ($slug) use ($app) {
 
-    $pages = Posts::find($id);
+    $response   = $app->response();
+    $response->header('Access-Control-Allow-Origin', '*');
 
-    die(json_encode($pages));
+    $pages      = Posts::where('slug', $slug)->first();
+    $response->write(json_encode($pages));
 });
 
 $app->post('/api/v1/pages', function () use ($app) {

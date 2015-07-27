@@ -8,7 +8,7 @@ angular.module('posts.list.controller', [])
     .then(function(data) {
         // promise fulfilled
         setTimeout(function () {
-
+            console.log(data);
             $scope.$apply(function(){
                 var newData = [];
                 for ( var index=0; index<data.length; index++ ) {
@@ -16,7 +16,7 @@ angular.module('posts.list.controller', [])
                             content.slug        = data[index].slug;
                             content.title       = data[index].title;
                             content.content     = data[index].content;
-                            content.date        = Date.parse(data[index].created_at);
+                            content.date        = Date.parse(data[index].created_at['date']);
                             content.author      = data[index].author;
 
                             newData.push(content);
@@ -43,6 +43,7 @@ angular.module('posts.controller', [])
     Posts.fetch($routeParams.slug)
     // then() called when son gets back
     .then(function(data) {
+        console.log(data);
         // promise fulfilled
         setTimeout(function () {
             $scope.$apply(function(){
@@ -52,7 +53,7 @@ angular.module('posts.controller', [])
                             content.slug        = data[index].slug;
                             content.title       = data[index].title;
                             content.content     = data[index].content;
-                            content.date        = Date.parse(data[index].created_at);
+                            content.date        = Date.parse(data[index].created_at['date']);
                             content.author      = data[index].author;
 
                             newData.push(content);
