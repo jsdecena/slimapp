@@ -26,14 +26,14 @@ $app = new \Slim\Slim(array(
     'mode'              => 'develop',
     'debug'             => true,
     'cookies.encrypt'   => true,
-    'cookies.path'      => '../app/storage/logs/slimcookie.log'
+    'cookies.path'      => '../storage/logs/slimcookie.log'
 ));
 
 // Create monolog logger and store logger in container as singleton 
 // (Singleton resources retrieve the same log resource definition each time)
 $app->container->singleton('log', function () {
     $log = new \Monolog\Logger('slim-skeleton');
-    $log->pushHandler(new \Monolog\Handler\StreamHandler('../app/storage/logs/slimapp.log', \Monolog\Logger::DEBUG));
+    $log->pushHandler(new \Monolog\Handler\StreamHandler('../storage/logs/slimapp.log', \Monolog\Logger::DEBUG));
     return $log;
 });
 
@@ -49,5 +49,6 @@ $app->view->parserOptions = array(
 
 $app->view->parserExtensions = array(new \Slim\Views\TwigExtension());
 
-require '../app/routes/api/users_api.php';
-require '../app/routes/users/users.php';
+require '../routes/api/users.php';
+require '../routes/api/posts.php';
+require '../routes/api/pages.php';
