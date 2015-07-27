@@ -1,5 +1,25 @@
 <?php
 
+/* Setup Eloquent. */
+use Illuminate\Database\Capsule\Manager as Capsule;
+use Illuminate\Events\Dispatcher;
+use Illuminate\Container\Container;
+
+$capsule = new Capsule;
+$capsule->addConnection([
+    "driver"    => "mysql",
+    "host"      => "localhost",
+    "database"  => "slimapp",
+    "username"  => "root",
+    "password"  => "",
+    "charset"   => "utf8",
+    "collation" => "utf8_general_ci",
+    "prefix"    => ""
+]);
+
+$capsule->setEventDispatcher(new Dispatcher(new Container));
+$capsule->bootEloquent();
+
 // Prepare app
 $app = new \Slim\Slim(array(
     'templates.path'    => '../templates',
@@ -29,24 +49,5 @@ $app->view->parserOptions = array(
 
 $app->view->parserExtensions = array(new \Slim\Views\TwigExtension());
 
-require '../app/routes.php';
-
-/* Setup Eloquent. */
-use Illuminate\Database\Capsule\Manager as Capsule;
-use Illuminate\Events\Dispatcher;
-use Illuminate\Container\Container;
-
-$capsule = new Capsule;
-$capsule->addConnection([
-    "driver"    => "mysql",
-    "host"      => "localhost",
-    "database"  => "slimapp",
-    "username"  => "root",
-    "password"  => "",
-    "charset"   => "utf8",
-    "collation" => "utf8_general_ci",
-    "prefix"    => ""
-]);
-
-$capsule->setEventDispatcher(new Dispatcher(new Container));
-$capsule->bootEloquent();
+require '../app/routes/api/users_api.php';
+require '../app/routes/users/users.php';
