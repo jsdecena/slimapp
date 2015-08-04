@@ -10,6 +10,7 @@ var app = angular.module('app', [
     'pages.controller',
     'posts.service',
     'stripHtml',
+    'trustAPI',
     'ngSanitize',
     'simplePagination'
 ]);

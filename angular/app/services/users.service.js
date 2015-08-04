@@ -34,6 +34,26 @@ angular.module('users.service', ['ngResource', 'synthesis.config'])
                     // something went wrong
                     return $q.reject(response.data);
                 });
+        },
+        create: function(userData) {
+
+            var headers = {'Access-Control-Allow-Origin' :'*'};
+            
+            $http.post(CONF.API_URL + '/api/v1/users', {userData}, headers)
+            .then(function(response) {
+                if (typeof response.data === 'object') {
+                    return response.data;
+                } else {
+                    // invalid response
+                    return $q.reject(response.data);
+                }
+                // this callback will be called asynchronously
+                // when the response is available
+              }, function(response) {
+                console.log(response); return false;
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+              });
         }        
     };
 });

@@ -67,8 +67,16 @@ angular.module('admin.users.controller', ['users.service'])
 }]);
 
 //CREATE USERS
-angular.module('admin.users.create.controller', [])
-.controller('AdminUsersCreateCtrl', [ '$scope', '$q', 'Pagination', function ($scope, $q, Pagination) {
+angular.module('admin.users.create.controller', ['synthesis.config'])
+.controller('AdminUsersCreateCtrl', [ '$scope', '$q', 'Users', 'Pagination', 'CONF', function ($scope, $q, Users, Pagination, CONF) {
+
+    $scope.create = function(user) {
+        
+        //POST DATA
+        Users.create(user);
+    };
 
     $scope.loading              = true;
+
+
 }]);
