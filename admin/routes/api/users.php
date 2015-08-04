@@ -12,9 +12,12 @@ class Users extends Model {
 //GET ALL THE USERS
 $app->get('/api/v1/users', function () use ($app) {
 
+    $response = $app->response();
+    $response->header('Access-Control-Allow-Origin', '*');
+
     $users = Users::all();
 
-    die(json_encode($users));
+    $response->write(json_encode($users));
 });
 
 //GET THE PARTICULAR USER

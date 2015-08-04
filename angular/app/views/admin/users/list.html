@@ -1,0 +1,24 @@
+<div class="container">
+    <div ng-include="adminTpl.url"></div>
+    <div class="col-md-9">
+        <legend>Users</legend>
+        <div ng-show="loading"> <div class="loader">loading ... </div></div>
+        <div ng-show="alert"><p class="alert alert-warning">Sorry, no user to show.</p></div>
+        <table class="table table-striped" ng-show="hasUsers">
+            <thead>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="user in users">
+                    <td>{{user.id}}</td>
+                    <td>{{user.firstname}}</td>
+                    <td>{{user.lastname}}</td>
+                    <td>{{user.email}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>    
+</div>
