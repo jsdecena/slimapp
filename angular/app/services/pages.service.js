@@ -1,10 +1,10 @@
-angular.module('pages.service', ['ngResource'])
-.factory('Pages', function($http, $q){
+angular.module('pages.service', ['ngResource', 'synthesis.config'])
+.factory('Pages', function($http, $q, CONF){
     return {
         fetchAll: function() {
             // the $http API is based on the deferred/promise APIs exposed by the $q service
             // so it returns a promise for us by default
-            return $http.get('http://localhost:8001/api/v1/pages')
+            return $http.get(CONF.API_URL + '/api/v1/pages')
                 .then(function(response) {
                     if (typeof response.data === 'object') {
                         return response.data;
@@ -21,7 +21,7 @@ angular.module('pages.service', ['ngResource'])
         fetch: function(slug) {
             // the $http API is based on the deferred/promise APIs exposed by the $q service
             // so it returns a promise for us by default
-            return $http.get('http://localhost:8001/api/v1/pages/'+slug)
+            return $http.get(CONF.API_URL + '/api/v1/pages/'+slug)
                 .then(function(response) {
                     if (typeof response.data === 'object') {
                         return response.data;

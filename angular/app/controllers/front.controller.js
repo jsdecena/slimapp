@@ -1,12 +1,14 @@
-angular.module('front.controller', ['pages.service'])
-.controller('FrontCtrl', [ '$scope', '$q', 'Pages', 'Pagination', function ($scope, $q, Pages, Pagination) {
-    
-    $scope.brand     = "Synthesis CMS";
+angular.module('front.controller', ['pages.service', 'synthesis.config'])
+.controller('FrontCtrl', [ '$scope', '$q', 'Pages', 'Pagination', 'CONF', function ($scope, $q, Pages, Pagination, CONF) {
+
+    $scope.brand     = CONF.APP_NAME;
     $scope.copyright = "<p>Copyright &copy; 2015 Synthesis CMS</p>";
 
     $scope.frontSidebar =[ { name: 'front.sidebar.html', url: 'views/front.sidebar.html'}];
-    
-    $scope.template = $scope.frontSidebar[0];
+    $scope.frontTpl = $scope.frontSidebar[0];
+
+    $scope.adminSidebar =[ { name: 'admin.sidebar.html', url: 'views/admin/admin.sidebar.html'}];    
+    $scope.adminTpl = $scope.adminSidebar[0];
     
     //FETCH ALL THE PAGES
     Pages.fetchAll()

@@ -1,5 +1,9 @@
 var app = angular.module('app', [
     'ngRoute',
+    'synthesis.config',
+    'admin.controller',
+    'admin.users.controller',
+    'admin.users.create.controller',
     'front.controller',
     'posts.list.controller',
     'posts.controller',
@@ -23,8 +27,14 @@ app.config(['$routeProvider',
             templateUrl: 'views/page.html',
             controller: 'PageCtrl'
         }).when('/admin', {
-            templateUrl: 'admin.html',
+            templateUrl: 'views/admin/admin.html',
             controller: 'AdminCtrl'
+        }).when('/admin/users', {
+            templateUrl: 'views/admin/users/list.html',
+            controller: 'AdminUsersCtrl'
+        }).when('/admin/users/create', {
+            templateUrl: 'views/admin/users/create.html',
+            controller: 'AdminUsersCreateCtrl'
         }).otherwise({
             redirectTo: '/'
       });

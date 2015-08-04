@@ -69,3 +69,7 @@ footer {
     height: 5em;
   }
 }
+li.active a {
+  background: #666;
+  color: #eee;
+}

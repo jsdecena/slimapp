@@ -3,7 +3,7 @@ angular.module('posts.list.controller', [])
 .controller('PostsList', [ '$scope', '$q', 'Posts', 'Pagination', function ($scope, $q, Posts, Pagination) {
     $scope.loading  = true;
     $scope.paginate = false;
-    $scope.alert  = false;
+    $scope.alert    = false;
 
     Posts.fetchAll()
     // then() called when son gets back
