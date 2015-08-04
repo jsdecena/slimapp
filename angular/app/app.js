@@ -22,6 +22,9 @@ app.config(['$routeProvider',
         }).when('/page/:slug', {
             templateUrl: 'views/page.html',
             controller: 'PageCtrl'
+        }).when('/admin', {
+            templateUrl: 'admin.html',
+            controller: 'AdminCtrl'
         }).otherwise({
             redirectTo: '/'
       });

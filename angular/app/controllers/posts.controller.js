@@ -1,14 +1,16 @@
 //GET LIST OF POSTS
 angular.module('posts.list.controller', [])
 .controller('PostsList', [ '$scope', '$q', 'Posts', 'Pagination', function ($scope, $q, Posts, Pagination) {
-    $scope.loading = true;
+    $scope.loading  = true;
     $scope.paginate = false;
+    $scope.alert  = false;
+
     Posts.fetchAll()
     // then() called when son gets back
     .then(function(data) {
         // promise fulfilled
         setTimeout(function () {
-            console.log(data);
+            //console.log(data);
             $scope.$apply(function(){
                 var newData = [];
                 for ( var index=0; index<data.length; index++ ) {
@@ -22,11 +24,17 @@ angular.module('posts.list.controller', [])
                             newData.push(content);
                 }
                 
-                $scope.pagination           = Pagination.getNew(10);
-                $scope.posts                = newData;
-                $scope.pagination.numPages  = Math.ceil($scope.posts.length/$scope.pagination.perPage);
                 $scope.loading              = false;
-                $scope.paginate             = true;
+                
+                //SHOW ONLY IF THERE IS MORE THAN 1 POST
+                if (newData.length>0) {
+                    $scope.paginate = true;
+                    $scope.posts    = newData;
+                    $scope.pagination           = Pagination.getNew(10);
+                    $scope.pagination.numPages  = Math.ceil($scope.posts.length/$scope.pagination.perPage);                    
+                }else{
+                    $scope.alert  = true;
+                };
                 //console.log($scope.posts);
             });
         }, 2000);

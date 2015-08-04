@@ -11,7 +11,7 @@ $capsule->addConnection([
     "host"      => "localhost",
     "database"  => "slimapp",
     "username"  => "root",
-    "password"  => "",
+    "password"  => "root",
     "charset"   => "utf8",
     "collation" => "utf8_general_ci",
     "prefix"    => ""
@@ -52,6 +52,8 @@ $app->view->parserExtensions = array(new \Slim\Views\TwigExtension());
 require '../routes/api/users.php';
 require '../routes/api/posts.php';
 require '../routes/api/pages.php';
+
+date_default_timezone_set('Asia/Manila');
 
 // Run app
 $app->run();

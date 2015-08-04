@@ -2,7 +2,11 @@ angular.module('front.controller', ['pages.service'])
 .controller('FrontCtrl', [ '$scope', '$q', 'Pages', 'Pagination', function ($scope, $q, Pages, Pagination) {
     
     $scope.brand     = "Synthesis CMS";
-    $scope.copyright = "<p>Copyright &copy; jsdecena.me 2015</p>";
+    $scope.copyright = "<p>Copyright &copy; 2015 Synthesis CMS</p>";
+
+    $scope.frontSidebar =[ { name: 'front.sidebar.html', url: 'views/front.sidebar.html'}];
+    
+    $scope.template = $scope.frontSidebar[0];
     
     //FETCH ALL THE PAGES
     Pages.fetchAll()

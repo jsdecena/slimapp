@@ -17,11 +17,12 @@ class Posts extends Model {
 //GET ALL THE USERS
 $app->get('/api/v1/posts', function () use ($app) {
 
-    $response   = $app->response();
+    $response = $app->response();
     $response->header('Access-Control-Allow-Origin', '*');
 
     $posts      = Posts::posts()->get();
 
+    $results = array();
     for ($i=0; $i < sizeof($posts); $i++) {
         
         $data['id']         = $posts[$i]['id']; 
@@ -47,6 +48,7 @@ $app->get('/api/v1/posts/:slug', function ($slug) use ($app) {
 
     $posts      = Posts::where('slug', $slug)->get();
 
+    $results = array();
     for ($i=0; $i < sizeof($posts); $i++) {
         
         $data['id']         = $posts[$i]['id']; 
